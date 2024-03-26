@@ -8,6 +8,7 @@ $gap: 1rem;
 $gap-1: 7rem;
 $gap-2: 10vh;
 $gap-3: 0.5rem;
+$gap-4: 2vh;
 $border-radius: 0.75rem;
 $width: 85%;
 %fixed-position {
@@ -372,7 +373,7 @@ $width: 85%;
       }
       .cards {
         max-height: calc((100% - $gap-2) * 0.8);
-        gap: $gap;
+        gap: $gap-4;
         @include mediaQuery($medScreen_min_width) {
           & {
             max-height: calc((100% - $gap-1) * 0.8);
@@ -498,7 +499,7 @@ $width: 85%;
       }
       .match-cards {
         max-height: calc((100% - $gap-2) * 0.2);
-        gap: $gap;
+        gap: $gap-4;
         @include mediaQuery($medScreen_min_width) {
           & {
             max-height: calc((100% - $gap-1) * 0.2);
