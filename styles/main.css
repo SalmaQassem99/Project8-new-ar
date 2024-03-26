@@ -141,7 +141,7 @@ a {
   max-height: 3rem;
   aspect-ratio: 1;
   position: relative;
-  z-index: 100;
+  z-index: 1000;
   background: linear-gradient(to bottom, #febf47 2%, #f0b700);
   color: #fff;
   font-size: 1.25rem;
@@ -192,6 +192,10 @@ a {
   top: calc(100vh - 3rem);
   transform: translateY(-100%);
   transition: 0.5s;
+  visibility: hidden;
+}
+.icon.pause .fa-solid.hide {
+  display: none;
 }
 
 .game {
@@ -200,14 +204,15 @@ a {
   padding: 1.5rem;
   position: relative;
   overflow-y: auto;
-  visibility: hidden;
-  background-image: url("../media/images/background.svg");
   background-size: cover;
   background-position: 50% 100%;
+  visibility: hidden;
+  transform-origin: right top;
 }
-.game.hide {
-  animation-name: scaleDown;
-  animation-duration: 0.5s;
+.game.hideGame {
+  animation-name: hideGame;
+  animation-timing-function: linear;
+  animation-duration: 0.7s;
   animation-iteration-count: 1;
 }
 .game .head {
@@ -406,6 +411,12 @@ a {
 @media (min-width: 768px) {
   .game .body .body-wrapper .cards {
     max-height: calc((100% - 7rem) * 0.8);
+    gap: 0.5rem;
+  }
+}
+@media (min-width: 992px) {
+  .game .body .body-wrapper .cards {
+    gap: 1rem;
   }
 }
 .game .body .body-wrapper .cards .card-item {
@@ -496,6 +507,12 @@ a {
 @media (min-width: 768px) {
   .game .body .body-wrapper .match-cards {
     max-height: calc((100% - 7rem) * 0.2);
+    gap: 0.5rem;
+  }
+}
+@media (min-width: 992px) {
+  .game .body .body-wrapper .match-cards {
+    gap: 1rem;
   }
 }
 .game .body .body-wrapper .match-cards .match-card-wrapper {
@@ -640,6 +657,9 @@ a {
   position: relative;
   top: -3vh;
 }
+.success-wrapper .success-card .card-wrapper .img-wrapper img {
+  transform: scaleX(-1);
+}
 .success-wrapper .success-card .card-wrapper .content-card {
   height: 60%;
 }
@@ -711,6 +731,14 @@ a {
   }
   100% {
     transform: translateZ(-1px) scaleX(1);
+  }
+}
+@keyframes hideGame {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
   }
 }
 @keyframes scaleDown {

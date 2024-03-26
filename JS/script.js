@@ -13,8 +13,6 @@ const textItems = document.querySelectorAll(
 );
 const cardsText = document.querySelectorAll(".cards .card-item .text");
 const successModal = document.querySelector(".success-wrapper");
-const closeButton = document.querySelector(".closeModal");
-const overlay = document.querySelector(".overlay");
 const arrows = document.querySelectorAll(".game .body .arrow");
 const pauseButton = document.querySelector(".game .pause.icon");
 const iconsArr = [...arrows, pauseButton];
@@ -67,8 +65,15 @@ playButton.addEventListener("click", () => {
     scoreWrapper.style.visibility = "visible";
     score.textContent = `0/${cardItems.length}`;
     body.classList.add("show");
+    pauseButton.style.visibility = "visible";
     animateNext(animationCounter);
   });
+});
+pauseButton.addEventListener("click", () => {
+  const hiddenIcon = pauseButton.querySelector("i.hide");
+  const shownIcon = pauseButton.querySelector("i:not(.hide)");
+  hiddenIcon.classList.remove("hide");
+  shownIcon.classList.add("hide");
 });
 textItems.forEach((textItem) => {
   textItem.addEventListener("dragstart", (event) => {
@@ -130,27 +135,6 @@ cardsText.forEach((cardItem) => {
       });
     }
   });
-});
-const addCloseAnimation = () => {
-  closeButton.classList.add("animate");
-  closeButton.addEventListener("animationend", () => {
-    closeButton.classList.remove("animate");
-  });
-  successModal.classList.add("hide");
-  successModal.style.visibility = "hidden";
-  overlay.classList.remove("show");
-};
-document.addEventListener("click", function (event) {
-  const isVisible =
-    window.getComputedStyle(successModal).visibility === "visible";
-  var isClickInside =
-    successModal.contains(event.target) || event.target === closeButton;
-  if (!isClickInside && isVisible) {
-    addCloseAnimation();
-  }
-});
-closeButton.addEventListener("click", () => {
-  addCloseAnimation();
 });
 const hideItems = () => {
   iconsArr.forEach((item) => {
